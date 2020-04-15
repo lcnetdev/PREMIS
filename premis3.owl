@@ -1,0 +1,665 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.loc.gov/premis/rdf/v3/"
+      xml:base="http://www.loc.gov/premis/rdf/v3/"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      xmlns:owl="http://www.w3.org/2002/07/owl#"
+      xmlns:xml="http://www.w3.org/XML/1998/namespace" 
+      xmlns:xsd="http://www.w3.org/2001/XMLSchema#" 
+      xmlns:dcterms="http://purl.org/dc/terms/"
+      xmlns:foaf="http://xmlns.com/foaf/0.1/"
+      xmlns:prov="http://www.w3.org/ns/prov#" 
+      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+      xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+  <owl:Ontology rdf:about="http://www.loc.gov/premis/rdf/v3/">     
+    <rdfs:label xml:lang="en">PREMIS 3 Ontology</rdfs:label>   
+    <rdfs:comment xml:lang="en">Ontology for PREMIS 3, the international standard
+      for metadata to support the preservation of digital objects and ensure their
+      long-term usability.</rdfs:comment> 
+    <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2018-10-12</dcterms:modified>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018/10/12</owl:versionInfo>
+    <owl:versionIRI rdf:resource="http://www.loc.gov/premis/rdf/v3/2018/10/12/"/>   
+    <rdfs:seeAlso rdf:resource="http://www.loc.gov/standards/premis/"/>   
+    <rdfs:seeAlso rdf:resource="https://github.com/PREMIS-OWL-Revision-Team/revise-premis-owl/"/>
+    <owl:imports rdf:resource="http://www.w3.org/ns/prov-o-20130430"/>
+  </owl:Ontology>
+
+
+  <!-- Classes -->
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Action">
+    <rdfs:label xml:lang="en">Action</rdfs:label>
+    <rdfs:comment xml:lang="en">Operation type to perform on an Object. Effectively performing this action may produce an Event.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+    <rdfs:seeAlso rdf:resource="http://id.loc.gov/vocabulary/preservation/actionsGranted"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Agent">
+    <rdfs:label xml:lang="en">Agent</rdfs:label>
+    <rdfs:comment xml:lang="en">Actor (human, machine, or software) associated with one or more Event and/or Rights
+      statement associated with a digital object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Agent"/>
+    <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Bitstream">
+    <rdfs:label xml:lang="en">Bitstream</rdfs:label>
+    <rdfs:comment xml:lang="en">Contiguous or non-contiguous data within a file that has meaningful properties for
+      preservation purposes.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.loc.gov/premis/rdf/v3/Object"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/File"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/IntellectualEntity"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Representation"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:Class> 
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Copyright">
+    <rdfs:label xml:lang="en">Copyright</rdfs:label>
+    <rdfs:comment xml:lang="en">Copyright law.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.loc.gov/premis/rdf/v3/RightsBasis"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/InstitutionalPolicy"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/License"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Statute"/>
+    <rdfs:seeAlso rdf:resource="http://id.loc.gov/vocabulary/preservation/copyrightStatus"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Dependency">
+    <rdfs:label xml:lang="en">Dependency</rdfs:label>
+    <rdfs:comment xml:lang="en">Relationship where one Object requires another Object to support its function, delivery, or
+      the coherence of its content.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/EnvironmentCharacteristic">
+    <rdfs:label xml:lang="en">Environment characteristic</rdfs:label>
+    <rdfs:comment xml:lang="en">An assessment of the extent to which the described environment supports its
+      purpose.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+    <rdfs:seeAlso rdf:resource="http://id.loc.gov/vocabulary/preservation/environmentCharacteristic"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Event">
+    <rdfs:label xml:lang="en">Event</rdfs:label>
+    <rdfs:comment xml:lang="en">Action performed within or outside the repository that affects its capability to preserve Objects over the long term.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Activity"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+    <rdfs:seeAlso rdf:resource="http://id.loc.gov/vocabulary/preservation/eventType"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/File">
+    <rdfs:label xml:lang="en">File</rdfs:label>
+    <rdfs:comment xml:lang="en">Named and ordered sequence of bytes that is known to an operating system.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.loc.gov/premis/rdf/v3/Object"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Bitstream"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/IntellectualEntity"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Representation"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Fixity">
+    <rdfs:label xml:lang="en">Fixity</rdfs:label>
+    <rdfs:comment xml:lang="en">Information used to verify whether an object has been altered in an undocumented or
+      unauthorized way.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+    <rdfs:seeAlso rdf:resource="http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/HardwareAgent">
+    <rdfs:label xml:lang="en">Hardware agent</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.loc.gov/premis/rdf/v3/Agent"/>
+    <owl:sameAs rdf:resource="http://id.loc.gov/vocabulary/preservation/agentType/har"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Organization"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Person"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/SoftwareAgent"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Identifier">
+    <rdfs:label xml:lang="en">Identifier</rdfs:label>
+    <rdfs:comment xml:lang="en">An unambiguous reference to the PREMIS entity within the preservation
+      repository.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Inhibitor">
+    <rdfs:label xml:lang="en">Inhibitor</rdfs:label>
+    <rdfs:comment xml:lang="en">Feature of a Digital Object intended to inhibit access, copying, dissemination, or
+      migration. Common Inhibitors are encryption and password protection.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+    <rdfs:seeAlso rdf:resource="http://id.loc.gov/vocabulary/preservation/inhibitorType"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/InstitutionalPolicy">
+    <rdfs:label xml:lang="en">Institutional policy</rdfs:label>
+    <rdfs:comment xml:lang="en">A policy decision made by an organization.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.loc.gov/premis/rdf/v3/RightsBasis"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Copyright"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/License"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Statute"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/IntellectualEntity">
+    <rdfs:label xml:lang="en">Intellectual entity</rdfs:label>
+    <rdfs:comment xml:lang="en">A set of content that is considered a single intellectual unit for purposes of management and
+      description: for example, a particular book, map, photograph, database, or piece of hardware or
+      software. An Intellectual Entity can include other Intellectual Entities; for example, a web site can
+      include a web page; a web page can include an image. An Intellectual Entity may have one or more digital
+      representations. An Intellectual Entity may also describe an environment, defined as technology
+      supporting a digital object in some way (e.g. by rendering or executing it). Environments can consist of
+      software, hardware, or a combination of both.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.loc.gov/premis/rdf/v3/Object"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Bitstream"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/File"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Representation"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/> 
+    <rdfs:seeAlso rdf:resource="http://id.loc.gov/vocabulary/preservation/environmentFunctionType"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/License">
+    <rdfs:label xml:lang="en">License</rdfs:label>
+    <rdfs:comment xml:lang="en">A license agreement or other legal document that grants rights.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.loc.gov/premis/rdf/v3/RightsBasis"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Copyright"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/InstitutionalPolicy"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Statute"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Object">
+    <rdfs:label xml:lang="en">Object</rdfs:label>
+    <rdfs:comment xml:lang="en">Discrete unit of information subject to digital preservation. Subclasses of Object are
+      Intellectual Entity, Representation, File and Bitstream.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Organization">
+    <rdfs:label xml:lang="en">Organization</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.loc.gov/premis/rdf/v3/Agent"/>
+    <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Organization"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/HardwareAgent"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Person"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/SoftwareAgent"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/OutcomeStatus">
+    <rdfs:label xml:lang="en">Outcome status</rdfs:label>
+    <rdfs:comment xml:lang="en">Overall result of the Event in terms of success, partial success, or failure.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+    <rdfs:seeAlso rdf:resource="http://id.loc.gov/vocabulary/preservation/eventOutcome"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Person">
+    <rdfs:label xml:lang="en">Person</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.loc.gov/premis/rdf/v3/Agent"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Person"/>
+    <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/HardwareAgent"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Organization"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/SoftwareAgent"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/PreservationPolicy">
+    <rdfs:label xml:lang="en">Preservation policy</rdfs:label>
+    <rdfs:comment xml:lang="en">Information indicating the decision or policy on the set of preservation functions to be
+      applied to an object and the context in which the decision or policy was made. Note that in addition to
+      subclasses declared at presLevType, SignificantProperties is also a subclass of PreservationPolicy.
+      Implementers may also wish to create locally-defined subclasses.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dc/terms/Policy"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+    <rdfs:seeAlso rdf:resource="http://id.loc.gov/vocabulary/preservation/preservationLevelRole"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Representation">
+    <rdfs:label xml:lang="en">Representation</rdfs:label>
+    <rdfs:comment xml:lang="en">Digital or physical Object instantiating or embodying an Intellectual Entity. A digital
+      representation is the set of stored digital files and structural metadata needed to provide a complete
+      and reasonable rendition of the Intellectual Entity. A physical representation is an item such as a
+      manuscript, video cassette, or printed document.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.loc.gov/premis/rdf/v3/Object"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Bitstream"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/File"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/IntellectualEntity"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/RightsBasis">
+    <rdfs:label xml:lang="en">Rights basis</rdfs:label>
+    <rdfs:comment xml:lang="en">Designation of the basis for the right or permission governing the Object.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+    <rdfs:seeAlso rdf:resource="http://id.loc.gov/vocabulary/preservation/rightsBasis"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/RightsStatus">
+    <rdfs:label xml:lang="en">Rights status</rdfs:label>
+    <rdfs:comment xml:lang="en">Information about how a RightsBasis applies to a particular object.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Rule">
+    <rdfs:label xml:lang="en">Rule</rdfs:label>
+    <rdfs:comment xml:lang="en">Statement about the Actions an Agent is permitted to undertake or prohibited from
+      undertaking with respect to an Object.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Signature">
+    <rdfs:label xml:lang="en">Signature</rdfs:label>
+    <rdfs:comment xml:lang="en">Mathematical technique used to validate the authenticity and integrity of a message,
+      software or digital document.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+    <rdfs:seeAlso rdf:resource="http://id.loc.gov/vocabulary/preservation/signatureMethod"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/SignatureEncoding">
+    <rdfs:label xml:lang="en">Signature encoding</rdfs:label>
+    <rdfs:comment xml:lang="en">Encoding used for the signature value and key information.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+    <rdfs:seeAlso rdf:resource="http://id.loc.gov/vocabulary/preservation/signatureEncoding"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/SignificantProperties">
+    <rdfs:label xml:lang="en">Significant properties</rdfs:label>
+    <rdfs:comment xml:lang="en">Characteristics of a particular object subjectively determined to be important to maintain
+      through preservation actions.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.loc.gov/premis/rdf/v3/PreservationPolicy"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/SoftwareAgent">
+    <rdfs:label xml:lang="en">Software agent</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.loc.gov/premis/rdf/v3/Agent"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#SoftwareAgent"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/HardwareAgent"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Organization"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Person"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Statute">
+    <rdfs:label xml:lang="en">Statute</rdfs:label>
+    <rdfs:comment xml:lang="en">A law that grants or revokes rights, such as laws governing privacy or orphan
+      works.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.loc.gov/premis/rdf/v3/RightsBasis"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/Copyright"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/License"/>
+    <owl:disjointWith rdf:resource="http://www.loc.gov/premis/rdf/v3/InstitutionalPolicy"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/StorageLocation">
+    <rdfs:label xml:lang="en">Storage location</rdfs:label>
+    <rdfs:comment xml:lang="en">Information needed to retrieve a physical item from its physical storage location or a file
+      from the storage system, or to access a bitstream within a file.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+    <rdfs:seeAlso rdf:resource="http://id.loc.gov/vocabulary/preservation/contentLocationType"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/StorageMedium">
+    <rdfs:label xml:lang="en">Storage medium</rdfs:label>
+    <rdfs:comment xml:lang="en">The physical medium on which the Object is stored (e.g., magnetic tape, hard disk, CD-ROM,
+      DVD).</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+    <rdfs:seeAlso rdf:resource="http://id.loc.gov/vocabulary/preservation/storageMedium"/>
+  </owl:Class>
+
+
+  <!-- Object Properties -->
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/act">
+    <rdfs:label xml:lang="en">act</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/Rule"/>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/Action"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/allows">
+    <rdfs:label xml:lang="en">allows</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/RightsBasis"/> 
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/Rule"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/governs">
+    <rdfs:label xml:lang="en">governs</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/RightsBasis"/>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/Object"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty> 
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/basis">
+    <rdfs:label xml:lang="en">has basis</rdfs:label>
+    <rdfs:comment xml:lang="en">Links from a RightsStatus to the RightsBasis instance that supports or documents
+      it.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/RightsStatus"/>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/RightsBasis"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/characteristic">
+    <rdfs:label xml:lang="en">has characteristic</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/Dependency"/>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/EnvironmentCharacteristic"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/dependency">
+    <rdfs:label xml:lang="en">has dependency</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/Object"/>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/Dependency"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/documentation">
+    <rdfs:label xml:lang="en">has documentation</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/encoding">
+    <rdfs:label xml:lang="en">has encoding</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/Signature"/>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/SignatureEncoding"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/fixity">
+    <rdfs:label xml:lang="en">has fixity</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Bitstream"/>
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/File"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/Fixity"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/identifier">
+    <rdfs:label xml:lang="en">has identifier</rdfs:label>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/Identifier"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/jurisdiction">
+    <rdfs:label xml:lang="en">has jurisdiction</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/RightsBasis"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/medium">
+    <rdfs:label xml:lang="en">has medium</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/StorageLocation"/>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/StorageMedium"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/outcome">
+    <rdfs:label xml:lang="en">has outcome</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/Event"/>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/OutcomeStatus"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/policy">
+    <rdfs:label xml:lang="en">has policy</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/Object"/>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/PreservationPolicy"/>
+    <rdfs:seeAlso rdf:resource="http://id.loc.gov/vocabulary/preservation/preservationLevelRole"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/purpose">
+    <rdfs:label xml:lang="en">has purpose</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/Dependency"/>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/Action"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/relationship">
+    <rdfs:label xml:lang="en">has relationship</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Agent"/>
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Object"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/Object"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+    <rdfs:seeAlso rdf:resource="http://id.loc.gov/vocabulary/preservation/relationshipSubType"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/rightsStatus">
+    <rdfs:label xml:lang="en">has rights status</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/rights"/>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/Object"/>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/RightsStatus"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/signature">
+    <rdfs:label xml:lang="en">has signature</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Bitstream"/>
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/File"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/Signature"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/inhibitedBy">
+    <rdfs:label xml:lang="en">inhibited by</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Bitstream"/>
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/File"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/Inhibitor"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/inhibits">
+    <rdfs:label xml:lang="en">inhibits</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/Inhibitor"/>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/Action"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/prohibits">
+    <rdfs:label xml:lang="en">prohibits</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/RightsBasis"/> 
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/Rule"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://www.loc.gov/premis/rdf/v3/storedAt">
+    <rdfs:label xml:lang="en">stored at</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Bitstream"/>
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/File"/>
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Representation"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.loc.gov/premis/rdf/v3/StorageLocation"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:ObjectProperty>
+
+
+  <!-- DataType Properties -->
+
+  <owl:DatatypeProperty rdf:about="http://www.loc.gov/premis/rdf/v3/endDate">
+    <rdfs:label xml:lang="en">end date</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/RightsStatus"/>
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Rule"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/date"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="http://www.loc.gov/premis/rdf/v3/citation">
+    <rdfs:label xml:lang="en">has citation</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/RightsBasis"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="http://www.loc.gov/premis/rdf/v3/compositionLevel">
+    <rdfs:label xml:lang="en">has composition level</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/File"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="http://www.loc.gov/premis/rdf/v3/determinationDate">
+    <rdfs:label xml:lang="en">has determination date</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/RightsStatus"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/date"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="http://www.loc.gov/premis/rdf/v3/key">
+    <rdfs:label xml:lang="en">has key</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Inhibitor"/>
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Signature"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="http://www.loc.gov/premis/rdf/v3/note">
+    <rdfs:label xml:lang="en">has note</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/description"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="http://www.loc.gov/premis/rdf/v3/originalName">
+    <rdfs:label xml:lang="en">has original name</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/File"/>
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/IntellectualEntity"/>
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Representation"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="http://www.loc.gov/premis/rdf/v3/outcomeNote">
+    <rdfs:label xml:lang="en">has outcome note</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/Event"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.loc.gov/premis/rdf/v3/note"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="http://www.loc.gov/premis/rdf/v3/rationale">
+    <rdfs:label xml:lang="en">has rationale</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.loc.gov/premis/rdf/v3/note"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="http://www.loc.gov/premis/rdf/v3/restriction">
+    <rdfs:label xml:lang="en">has restriction</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/Rule"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="http://www.loc.gov/premis/rdf/v3/size">
+    <rdfs:label xml:lang="en">has size</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Bitstream"/>
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/File"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+    <skos:narrowMatch rdf:resource="http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#fileSize"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="http://www.loc.gov/premis/rdf/v3/terms">
+    <rdfs:label xml:lang="en">has terms</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/RightsBasis"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.loc.gov/premis/rdf/v3/note"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="http://www.loc.gov/premis/rdf/v3/validationRules">
+    <rdfs:label xml:lang="en">has validation rules</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.loc.gov/premis/rdf/v3/Signature"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.loc.gov/premis/rdf/v3/note"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="http://www.loc.gov/premis/rdf/v3/version">
+    <rdfs:label xml:lang="en">has version</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://purl.org/dc/terms/FileFormat"/>
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/HardwareAgent"/>
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/IntellectualEntity"/>
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/SoftwareAgent"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="http://www.loc.gov/premis/rdf/v3/startDate">
+    <rdfs:label xml:lang="en">start date</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/RightsStatus"/>
+          <owl:Class rdf:about="http://www.loc.gov/premis/rdf/v3/Rule"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/date"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.loc.gov/premis/rdf/v3/"/>
+  </owl:DatatypeProperty>
+
+</rdf:RDF>
