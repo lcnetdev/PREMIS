@@ -16,8 +16,9 @@
       for metadata to support the preservation of digital objects and ensure their
       long-term usability.</rdfs:comment> 
     <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2018-10-12</dcterms:modified>
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018/10/12</owl:versionInfo>
-    <owl:versionIRI rdf:resource="http://www.loc.gov/premis/rdf/v3/2018/10/12/"/>   
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3.0.0</owl:versionInfo>;
+    <owl:versionIRI rdf:resource="https://id.loc.gov/ontologies/premis-3-0-0 "/>   
+    <owl:priorVersion rdf:resource="https://id.loc.gov/ontologies/premis-1-0-0"/>
     <rdfs:seeAlso rdf:resource="http://www.loc.gov/standards/premis/"/>   
     <rdfs:seeAlso rdf:resource="https://github.com/PREMIS-OWL-Revision-Team/revise-premis-owl/"/>
     <owl:imports rdf:resource="http://www.w3.org/ns/prov-o-20130430"/>
