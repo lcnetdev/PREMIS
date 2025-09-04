@@ -65,11 +65,11 @@
 
 <movformat> a dct:FileFormat ;
     rdfs:label "Quicktime" ;
-    skos:exactMatch <http://www.nationalarchives.go.uk/pronom/fmt/658> .
+    skos:exactMatch <http://www.nationalarchives.gov.uk/pronom/fmt/658> .
 
 <m4aformat> a dct:FileFormat ;
     rdfs:label "Apple Lossless Audio Codec" ;
-    skos:exactMatch <http://www.nationalarchives.go.uk/pronom/fmt/596> .
+    skos:exactMatch <http://www.nationalarchives.gov.uk/pronom/fmt/596> .
 
 <file1md5Fixity> a crypHashFunc:md5 ;
     rdf:value "258622b1688250cb619f3c9ccaefb7eb" ;
